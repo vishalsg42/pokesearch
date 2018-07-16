@@ -13,7 +13,7 @@ class SearchBody extends React.Component {
       {var pokemon =this.props.data;}
     return (
         <ImageBackground source={imgBackground} style={styles.bgImg} >
-            {/* <ScrollView> */}
+            <ScrollView style={{flex: 1}}>
                { 
                    !this.props.isSearch ? 
                    <View>
@@ -54,7 +54,7 @@ class SearchBody extends React.Component {
                    :''
 
                }
-            {/* </ScrollView> */}
+            </ScrollView>
         </ImageBackground>
 
     );
@@ -63,8 +63,10 @@ class SearchBody extends React.Component {
 
 const styles = {
     bgImg:{
+        flex: 1,
         width: '100%',
         height: '100%'
+
     },
     header: {
         fontSize: 30,
