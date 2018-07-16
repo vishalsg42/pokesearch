@@ -6,11 +6,12 @@ let loaderImg = require('../../assets/icons/tenor.gif');
 class PokeLoader extends React.Component {
   render() {
     return (
-          <View style={{flex:1}}>
+          <View style={{flex:1,alignItems:'center'}}>
               <Image 
                 source={loaderImg}
                 style={styles.img}
               />
+              <Text style={styles.loadingText}>Loading...</Text>
           </View>
     );
   }
@@ -24,6 +25,9 @@ const styles = {
         height: 400,
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    loadingText : {
+      fontSize: 24,
     }
 }
 export default PokeLoader;

@@ -16,16 +16,14 @@ class Search extends React.Component {
   searchPoke = ()=> {
     this.setState({isSearch:true});
     var self = this;
-    var name = this.state.pokeSearch ?   this.state.pokeSearch.toLowerCase() : '';
-    axios.get('http://pokeapi.co/api/v2/pokemon/'+name)
+    axios.get('http://pokeapi.co/api/v2/pokemon/'+ this.state.pokeSearch.toLowerCase().trim())
         .then(response => {
-          console.log(response);
-          self.setState({isSearch: false})
-          self.setState({data: response.data})
+          this.setState({data: response.data})
+          this.setState({isSearch: false})
           
         }).catch(error=>{
           console.log(error);
-          self.setState({isSearch: true})
+          this.setState({isSearch: true})
         })
   }
 
@@ -36,7 +34,7 @@ class Search extends React.Component {
       )
     } else {
       return(
-        <SearchBody />
+        <SearchBody data={this.state.data} isSearch={this.state.isSearch} />
       )
     }
   }
@@ -49,12 +47,12 @@ class Search extends React.Component {
                 <Icon name='ios-search' onPress={this.searchPoke}/>
                 <Input placeholder="Search" 
                   value={this.state.pokeSearch}
-                  onChange={(pokeSearch)=>this.setState({pokeSearch}) }
+                  onChangeText={(pokeSearch)=>this.setState({pokeSearch}) }
                 />
+                <Button transparent onPress={this.searchPoke}>
+                  <Text>Search</Text>
+                </Button>
               </Item>
-              <Button transparent onPress={this.searchPoke}>
-                <Text>Search</Text>
-              </Button>
             </Header>
             {this.renderBody()}
           </View>
